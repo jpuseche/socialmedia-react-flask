@@ -7,7 +7,7 @@ type Data = {
 function Home() {
     return(
         <>
-        <Feed/>
+            <Feed/>
         </>
     )
     
