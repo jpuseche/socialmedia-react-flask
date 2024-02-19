@@ -6,7 +6,8 @@ type Post = {
     role: string,
     avatar_url: string,
     avatar_alt: string,
-    mainContent: string,
+    title: string,
+    content: string,
     datePublished: Date
 }
 
@@ -43,7 +44,7 @@ function Feed() {
                     </div>
                     {posts.map((post, i) => (
                         <>
-                            <PostComponent key={i} name={post.name} role={post.role} avatar_url={post.avatar_url} avatar_alt={post.avatar_alt} mainContent={post.mainContent} datePublished={new Date(post.datePublished)}/>
+                            <PostComponent key={i} name={post.name} role={post.role} avatar_url={post.avatar_url} avatar_alt={post.avatar_alt} title={post.title} content={post.content} datePublished={new Date(post.datePublished)}/>
                         </>
                     ))}
                 </div>

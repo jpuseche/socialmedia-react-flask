@@ -1,4 +1,4 @@
-function Post(props: {name: string, role: string, avatar_url: string, avatar_alt: string,  mainContent: string, datePublished: Date}) {
+function Post(props: {name: string, role: string, avatar_url: string, avatar_alt: string, title: string, content: string, datePublished: Date}) {
     let formattedPublishedDate = `${props.datePublished.getDay()}, ${props.datePublished.toLocaleString('en-EN', { month: 'long' })} ${props.datePublished.getFullYear()}`
     
     return(
@@ -13,7 +13,8 @@ function Post(props: {name: string, role: string, avatar_url: string, avatar_alt
                 <span className="text-right w-1/2">{formattedPublishedDate}</span>
             </div>
             <article className="flex flex-col items-start justify-between">
-                <p className="mt-5 line-clamp-3 text-sm leading-6">{props.mainContent}</p>
+                <span className="mt-2 font-bold text-xl">{props.title}</span>
+                <p className="mt-1 line-clamp-3 text-sm leading-6">{props.content}</p>
             </article>
         </>
     )
