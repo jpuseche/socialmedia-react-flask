@@ -20,6 +20,7 @@ def dbInit():
     cur.execute('CREATE TABLE person (id serial PRIMARY KEY,'
                 'first_name varchar (50) NOT NULL,'
                 'last_name varchar (50) NOT NULL,'
+                'role varchar (50),'
                 'avatar_url text,'
                 'avatar_alt varchar (50));'
                 )
@@ -33,15 +34,21 @@ def dbInit():
                 )
     
     # Execute a command: this inserts records into tables
-    cur.execute("INSERT INTO person (first_name, last_name, avatar_url, avatar_alt)"
+    cur.execute("INSERT INTO person (first_name, last_name, role, avatar_url, avatar_alt)"
                 "VALUES ('Juan',"
                 "'Useche',"
+                "'CEO',"
                 "'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',"
                 "'Juan'\'s Avatar')")
     
     cur.execute("INSERT INTO post (title, content, person_id)"
             "VALUES ('The best Post in the world',"
             "'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',"
+            "'1')")
+    
+    cur.execute("INSERT INTO post (title, content, person_id)"
+            "VALUES ('Another post for testing',"
+            "'shorter text',"
             "'1')")
 
     conn.commit()

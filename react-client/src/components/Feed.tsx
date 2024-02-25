@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 type Post = {
     name: string,
     role: string,
-    avatar_url: string,
-    avatar_alt: string,
+    avatarUrl: string,
+    avatarAlt: string,
     title: string,
     content: string,
     datePublished: Date
@@ -44,7 +44,7 @@ function Feed() {
                     </div>
                     {posts.map((post, i) => (
                         <>
-                            <PostComponent key={i} name={post.name} role={post.role} avatar_url={post.avatar_url} avatar_alt={post.avatar_alt} title={post.title} content={post.content} datePublished={new Date(post.datePublished)}/>
+                            <PostComponent key={i} name={post.name} role={post.role} avatarUrl={post.avatarUrl} avatarAlt={post.avatarAlt} title={post.title} content={post.content} datePublished={new Date(post.datePublished)}/>
                         </>
                     ))}
                 </div>
