@@ -1,6 +1,8 @@
 from flask import Blueprint
 import json
 import datetime
+from init_db import dbOpen
+from init_db import dbCommit
 
 postsJSON = json.dumps([{
     "name": "Juan",
@@ -16,4 +18,12 @@ post = Blueprint('post', __name__)
 
 @post.route("/posts")
 def getPosts():
+    conn, cur, err = dbOpen()
+
+    cur.execute('SELECT * FROM post LIMIT 10;')
+    print('Fetching posts from database')
+
+    allPosts = cur.fetchall()
+    print(allPosts)
+
     return {"postsJSON": postsJSON}
