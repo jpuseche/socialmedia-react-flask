@@ -62,12 +62,12 @@ def dbOpen():
         conn = dbSetup()
         cur = conn.cursor()
         
-        return conn, cur, None
+        return conn, cur
 
     except (Exception, psycopg2.Error) as error:
         print("Error while opening db connection", error)
 
-        return None, None, error
+        return None, None
 
 def dbCommit(conn: psycopg2.extensions.connection, cur: psycopg2.extensions.cursor):
     try:
