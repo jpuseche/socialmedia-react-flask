@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 import json
 import datetime
 from init_db import dbOpen
@@ -29,7 +29,7 @@ class PostPerson:
         self.content = content
         self.datePublished = datePublished
 
-post = Blueprint('post', __name__)
+post = Blueprint("post", __name__)
 
 @post.route("/posts")
 def getPosts():
@@ -44,7 +44,7 @@ def getPosts():
         for postPerson in cur.fetchall():
             allPosts.append(PostPerson(postPerson[0], postPerson[2], postPerson[3], postPerson[4], postPerson[5], postPerson[6], postPerson[7].isoformat()).__dict__)
 
-        print('GET allPosts JSON: ' + json.dumps(allPosts))
+        print("GET allPosts JSON: " + json.dumps(allPosts))
 
         dbCommit(conn, cur)
 
@@ -57,3 +57,24 @@ def getPosts():
         conn.close()
 
         return None
+
+@post.route("/post", methods = ["POST"])
+def addPost():
+    if request.method == 'POST':
+        conn, cur = dbOpen()
+
+        print(request.body)
+        # cur.execute("SELECT per.first_name, per.last_name, per.role, per.avatar_url, per.avatar_alt, post.title, post.content, post.date_published "
+        #             "FROM post JOIN person per ON post.person_id = per.id LIMIT 10;")
+        # print('Fetching posts from database')
+        
+        # allPosts: list[PostPerson] = []
+        # for postPerson in cur.fetchall():
+        #     allPosts.append(PostPerson(postPerson[0], postPerson[2], postPerson[3], postPerson[4], postPerson[5], postPerson[6], postPerson[7].isoformat()).__dict__)
+
+        # print("GET allPosts JSON: " + json.dumps(allPosts))
+
+        dbCommit(conn, cur)
+
+        # return {"postsJSON": json.dumps(allPosts)}
+        
